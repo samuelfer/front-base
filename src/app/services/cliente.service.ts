@@ -13,13 +13,13 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'https://jsonplaceholder.typicode.com';
+  private baseUrl = 'localhost:8080';
 
-  getClientes(): Observable<UsuarioApi[]> {
-    return this.http.get<UsuarioApi[]>(`${this.baseUrl}/users`);
+  getClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(`${this.baseUrl}/clientes`);
   }
 
-  salvar(postApi: PostApi): Observable<PostApi> {
-    return this.http.post<PostApi>(`${this.baseUrl}/posts`, postApi);
+  salvar(cliente: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>(`${this.baseUrl}/cadastrar`, cliente);
   }
 }
