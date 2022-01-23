@@ -27,7 +27,7 @@ export class ClientesListComponent implements OnInit {
   getClientes() {
     this.clientesService.getClientes()
       .subscribe(response => {
-        this.usuarios = response
+        this.clientes = response
       });
 
   }

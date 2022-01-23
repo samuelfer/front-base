@@ -13,13 +13,13 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'localhost:8080';
+  private baseUrl = 'http://localhost:8080';
 
   getClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(`${this.baseUrl}/clientes`);
   }
 
   salvar(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(`${this.baseUrl}/cadastrar`, cliente);
+    return this.http.post<Cliente>(`${this.baseUrl}/clientes`, cliente);
   }
 }

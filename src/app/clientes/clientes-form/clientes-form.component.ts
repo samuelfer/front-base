@@ -1,11 +1,9 @@
-import { PostApi } from './../post-api';
-import { ClienteService } from './../../services/cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import {MessageService, PrimeNGConfig} from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 
 import { Cliente } from '../cliente';
+import { ClienteService } from './../../services/cliente.service';
 
 @Component({
   selector: 'app-clientes-form',
@@ -16,7 +14,7 @@ import { Cliente } from '../cliente';
 export class ClientesFormComponent implements OnInit {
 
   public cliente: Cliente = new Cliente(0, '', '', '');
-  public postApi: PostApi = new PostApi(1, '', '');
+  erros: String[] = [];
 
   constructor(
     private router: Router,
@@ -30,13 +28,15 @@ export class ClientesFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.clienteService.salvar(this.postApi)
+    this.clienteService.salvar(this.cliente)
       .subscribe(response => {
-        console.log('No sucesso ', response)
         this.messageService.add({severity:'success', summary: 'Successo', detail: 'Registro cadastrado com sucesso'});
+        this.cliente = response;
+        this.erros = [];
       },
       errorResponse => {
-        console.log(errorResponse)
+        this.erros = errorResponse.error.errors;
+        this.messageService.add({severity:'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar salvar'});
       });
   }
 
