@@ -1,4 +1,3 @@
-import { UsuarioApi } from './../usuario-api';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -13,7 +12,6 @@ import { Cliente } from './../cliente';
 export class ClientesListComponent implements OnInit {
 
   clientes: Cliente[] = [];
-  usuarios: UsuarioApi[] = [];
 
   constructor(
     private router: Router,

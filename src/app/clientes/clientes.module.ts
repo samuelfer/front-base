@@ -19,6 +19,7 @@ import { ClientesRoutingModule } from './clientes-routing.module';
     FormsModule,
     ToastModule,
     MessageModule,
+
   ],
   exports: [
     ClientesFormComponent

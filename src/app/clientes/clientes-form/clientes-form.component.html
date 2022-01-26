@@ -1,55 +1,66 @@
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Cadastro</h1>
-</div>
-
 <div class="container">
-  <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
-          {{ erro }}
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>ID:</label>
-          <input type="text" class="form-control" [ngModel]="cliente.id" name="id" disabled>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Data de Cadastro:</label>
-          <input type="text" class="form-control" [ngModel]="cliente.dataCadastro"
-          name="dataCadastro" disabled>
-        </div>
-      </div>
-    </div>
-    <p-toast></p-toast>
-    <p-toast position="top-left" key="tl"></p-toast>
-    <p-toast position="top-center" key="tc"></p-toast>
-    <p-toast position="bottom-center" key="bc"></p-toast>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Nome:*</label>
-          <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>CPF:*</label>
-          <input type="text" class="form-control"  [(ngModel)]="cliente.cpf" name="cpf">
-        </div>
-      </div>
-    </div>
+ <div class="card shadow mb-4">
+   <div class="card-header py-3">
+     <h6 class="m-0 font-weight-bold text-primary">
+       {{ cliente.id ? 'Edição de cliente' : 'Cadastro de Cliente' }}
+    </h6>
+   </div>
 
-    <div class="row">
-      <div class="col-md-3">
-        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar</button>
-        <button type="button" class="btn btn-warning ml-1" (click)="voltar()"><i class="fa fa-reply"></i> Voltar</button>
-      </div>
-    </div>
-  </form>
+   <div class="container mt-2">
+     <p-toast></p-toast>
+     <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+       <div class="row">
+         <div class="col-md-12">
+           <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
+             {{ erro }}
+           </div>
+         </div>
+       </div>
+       <div class="row" *ngIf="cliente.id">
+         <div class="col-md-6">
+           <div class="form-group">
+             <label>ID:</label>
+             <input type="text" class="form-control" [ngModel]="cliente.id" name="id" disabled>
+           </div>
+         </div>
+         <div class="col-md-6">
+           <div class="form-group">
+             <label>Data de Cadastro:</label>
+             <input type="text" class="form-control" [ngModel]="cliente.dataCadastro" name="dataCadastro" disabled>
+           </div>
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="col-md-6">
+           <div class="form-group">
+             <label>Nome:*</label>
+             <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome">
+           </div>
+         </div>
+         <div class="col-md-6">
+           <div class="form-group">
+             <label>CPF:*</label>
+             <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="cpf">
+           </div>
+         </div>
+       </div>
+
+       <div class="row mb-2">
+         <div class="col-md-3">
+           <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
+             <i class="fa fa-save"></i> Salvar</button>
+
+           <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+            <i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
+
+           <button type="button" class="btn btn-warning ml-1" (click)="voltar()">
+             <i class="fa fa-reply"></i>
+             Voltar</button>
+         </div>
+       </div>
+
+     </form>
+   </div>
+ </div>
 </div>

@@ -21,7 +21,7 @@ import { TemplateModule } from './template/template.module';
     AppRoutingModule,
     HttpClientModule,
     TemplateModule,
-    ClientesModule
+    ClientesModule,
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent]

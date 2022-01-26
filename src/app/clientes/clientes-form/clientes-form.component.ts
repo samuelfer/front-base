@@ -1,6 +1,8 @@
+import { MessageService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
+import { Observable } from 'rxjs';
 
 import { Cliente } from '../cliente';
 import { ClienteService } from './../../services/cliente.service';
@@ -13,31 +15,59 @@ import { ClienteService } from './../../services/cliente.service';
 })
 export class ClientesFormComponent implements OnInit {
 
-  public cliente: Cliente = new Cliente(0, '', '', '');
+  public cliente: Cliente = new Cliente();
   erros: String[] = [];
+  id: number | undefined;
 
   constructor(
     private router: Router,
     private clienteService: ClienteService,
     private messageService: MessageService,
-    private primengConfig: PrimeNGConfig
+    private activedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.primengConfig.ripple = true;
+    let params: Observable<Params>  =this.activedRoute.params;
+    params.subscribe(urlParams => {
+      this.id = urlParams['id'];
+      if (this.id) {
+          this.clienteService.getClienteById(this.id)
+            .subscribe(response => this.cliente = response,
+                       errorResponse => console.log(errorResponse)
+            )
+      }
+    });
   }
 
   onSubmit() {
-    this.clienteService.salvar(this.cliente)
+    if (this.id){
+      this.clienteService.atualizar(this.cliente)
       .subscribe(response => {
-        this.messageService.add({severity:'success', summary: 'Successo', detail: 'Registro cadastrado com sucesso'});
-        this.cliente = response;
+        this.messageService.add({severity:'success', summary: 'Successo',
+        detail: 'Registro atualizado com sucesso'});
+        this.cliente = response
         this.erros = [];
       },
       errorResponse => {
         this.erros = errorResponse.error.errors;
-        this.messageService.add({severity:'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar salvar'});
+        this.messageService.add({severity:'error', summary: 'Erro',
+        detail: 'Ocorreu um erro ao tentar salvar'});
       });
+    } else {
+      this.clienteService.cadastrar(this.cliente)
+      .subscribe(response => {
+        this.messageService.add({severity:'success', summary: 'Successo',
+        detail: 'Registro cadastrado com sucesso'});
+        this.cliente = response
+        this.erros = [];
+      },
+      errorResponse => {
+        this.erros = errorResponse.error.errors;
+        this.messageService.add({severity:'error', summary: 'Erro',
+        detail: 'Ocorreu um erro ao tentar salvar'});
+      });
+    }
+    this.voltar();
   }
 
   voltar(): void {

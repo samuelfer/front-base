@@ -1,10 +1,9 @@
- <!-- Page Heading -->
-
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
   <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Clientes
-        <button type="submit" class="btn btn-success float-right" (click)="abrirForm()"><i class="fa fa-plus"></i> Novo</button></h6>
+        <button type="submit" class="btn btn-success float-right" (click)="abrirForm()">
+          <i class="fa fa-plus"></i> Novo</button></h6>
   </div>
   <div class="card-body">
       <div class="table-responsive">
@@ -19,19 +18,62 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let usuario of usuarios">
-                      <td>#{{ usuario.id }}</td>
-                      <td>{{ usuario.name }}</td>
-                      <td>{{ usuario.username }}</td>
-                      <td>{{ usuario.email }}</td>
+                  <tr *ngFor="let cliente of clientes">
+                      <td>#{{ cliente.id }}</td>
+                      <td>{{ cliente.nome }}</td>
+                      <td>{{ cliente.cpf }}</td>
+                      <td>{{ cliente.dataCadastro }}</td>
                       <td>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</button>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button>
+                        <button type="button" class="btn btn-primary btn-circle"
+                         routerLink="/clientes/{{ cliente.id }}" title="Editar">
+                          <i class="fa fa-edit"></i></button>
+
+                        <button class="btn btn-danger btn-circle"
+                          data-toggle="modal" data-target="#modalDelecao" title="Excluir">
+                          <i class="fas fa-trash"></i></button>
                       </td>
                   </tr>
               </tbody>
           </table>
       </div>
   </div>
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Modal -->
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+           <h4>Confirmação</h4>
+           <div class="modal-body"></div>
+         </div>
+      </div>
+    </div>
+  </div>
+<!-- Fim modal -->
 </div>
 
