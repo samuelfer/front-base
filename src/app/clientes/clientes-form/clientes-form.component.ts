@@ -15,9 +15,10 @@ import { ClienteService } from './../../services/cliente.service';
 })
 export class ClientesFormComponent implements OnInit {
 
-  public cliente: Cliente = new Cliente();
+  public cliente: Cliente = new Cliente(0, '', '', '');
   erros: String[] = [];
   id: number | undefined;
+  submitted = false;
 
   constructor(
     private router: Router,
@@ -40,6 +41,7 @@ export class ClientesFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.id){
       this.clienteService.atualizar(this.cliente)
       .subscribe(response => {
@@ -60,6 +62,7 @@ export class ClientesFormComponent implements OnInit {
         detail: 'Registro cadastrado com sucesso'});
         this.cliente = response
         this.erros = [];
+        this.voltar();
       },
       errorResponse => {
         this.erros = errorResponse.error.errors;
@@ -67,7 +70,6 @@ export class ClientesFormComponent implements OnInit {
         detail: 'Ocorreu um erro ao tentar salvar'});
       });
     }
-    this.voltar();
   }
 
   voltar(): void {
