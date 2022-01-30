@@ -34,11 +34,13 @@ export class ClientesFormComponent implements OnInit {
       if (this.id) {
           this.clienteService.getClienteById(this.id)
             .subscribe(response => this.cliente = response,
-                       errorResponse => console.log(errorResponse)
-            )
-      }
-    });
-  }
+                errorResponse => {
+                this.messageService.add({severity:'error', summary: 'Erro',
+                  detail: 'Desculpe, ocorreu um erro ao tentar recuperar os dados do cliente'});
+                })
+           }
+      });
+    }
 
   onSubmit() {
     this.submitted = true;
@@ -46,9 +48,9 @@ export class ClientesFormComponent implements OnInit {
       this.clienteService.atualizar(this.cliente)
       .subscribe(response => {
         this.messageService.add({severity:'success', summary: 'Successo',
-        detail: 'Registro atualizado com sucesso'});
-        this.cliente = response
+        detail: 'Registro salvo com sucesso'});
         this.erros = [];
+        this.ngOnInit();
       },
       errorResponse => {
         this.erros = errorResponse.error.errors;
@@ -59,10 +61,9 @@ export class ClientesFormComponent implements OnInit {
       this.clienteService.cadastrar(this.cliente)
       .subscribe(response => {
         this.messageService.add({severity:'success', summary: 'Successo',
-        detail: 'Registro cadastrado com sucesso'});
+        detail: 'Registro salvo com sucesso'});
         this.cliente = response
         this.erros = [];
-        this.voltar();
       },
       errorResponse => {
         this.erros = errorResponse.error.errors;

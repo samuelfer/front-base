@@ -4,7 +4,6 @@
      <h6 class="m-0 font-weight-bold text-primary">
        {{ cliente.id ? 'Edição de cliente' : 'Cadastro de Cliente' }}
     </h6>
-   </div>
 
    <div class="container mt-2">
      <p-toast></p-toast>
@@ -37,7 +36,7 @@
          <div class="col-md-6">
            <div class="form-group">
              <label  for="nome">Nome:*</label>
-             <input type="text" class="form-control ng-untouched ng-pristine ng-valid" [(ngModel)]="cliente.nome"
+             <input type="text" class="form-control" [(ngModel)]="cliente.nome"
              name="nome" id="nome" required #name="ngModel">
              <span [hidden]="name.valid || name.pristine"
               class="text-danger-error-custom">Nome é obrigatório</span>
@@ -46,9 +45,9 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="cpf">CPF:*</label>
-             <input type="text" class="form-control ng-untouched ng-pristine ng-valid" [(ngModel)]="cliente.cpf"
-             name="cpf" id="cpf" required  #name="ngModel">
-             <span [hidden]="name.valid || name.pristine"
+             <input type="text" class="form-control" [(ngModel)]="cliente.cpf"
+             name="cpf" id="cpf" required  #cpf="ngModel">
+             <span [hidden]="cpf.valid || cpf.pristine"
              class="text-danger-error-custom">cpf é obrigatório</span>
             </div>
          </div>
@@ -58,7 +57,7 @@
            <button type="submit" class="btn btn-success" *ngIf="!cliente.id" [disabled]="!clienteForm.form.valid">
              <i class="fa fa-save"></i> Salvar</button>
 
-           <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+           <button type="submit" class="btn btn-primary" *ngIf="cliente.id" [disabled]="!clienteForm.form.valid">
             <i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
 
            <button type="button" class="btn btn-warning ml-1" (click)="voltar()">

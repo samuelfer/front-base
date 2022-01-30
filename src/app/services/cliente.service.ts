@@ -27,6 +27,10 @@ export class ClienteService {
   }
 
   atualizar(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(`${API_URL}/clientes/${cliente.id}`, cliente);
+    return this.http.put<Cliente>(`${API_URL}/clientes/${cliente.id}`, cliente);
+  }
+
+  deletar(cliente: Cliente): Observable<any> {
+    return this.http.delete<any>(`${API_URL}/clientes/${cliente.id}`);
   }
 }
