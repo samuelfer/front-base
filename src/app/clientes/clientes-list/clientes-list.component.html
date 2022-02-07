@@ -1,0 +1,44 @@
+ <!-- DataTales Example -->
+ <div class="card shadow mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Clientes
+        <button type="submit" class="btn btn-success float-right" (click)="abrirForm()">
+          <i class="fa fa-plus"></i> Novo</button></h6>
+  </div>
+  <p-toast></p-toast>
+  <p-confirmPopup></p-confirmPopup>
+
+  <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nome</th>
+                      <th>CPF</th>
+                      <th>Data Cadastro</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let cliente of clientes">
+                      <td>#{{ cliente.id }}</td>
+                      <td>{{ cliente.nome }}</td>
+                      <td>{{ cliente.cpf }}</td>
+                      <td>{{ cliente.dataCadastro }}</td>
+                      <td>
+                        <button type="button" class="btn btn-primary btn-circle"
+                         routerLink="/clientes/{{ cliente.id }}" title="Editar">
+                          <i class="fa fa-edit"></i></button>
+
+                          <button (click)="confirm(cliente)" class="p-button-raised p-button-danger"
+                            pButton icon="pi pi-trash"></button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+</div>
+

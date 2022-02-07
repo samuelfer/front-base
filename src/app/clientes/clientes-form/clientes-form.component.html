@@ -1,0 +1,72 @@
+<div class="container">
+ <div class="card shadow mb-4">
+   <div class="card-header py-3">
+     <h6 class="m-0 font-weight-bold text-primary">
+       {{ cliente.id ? 'Edição de cliente' : 'Cadastro de Cliente' }}
+    </h6>
+
+   <div class="container mt-2">
+     <p-toast></p-toast>
+     <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+       <div class="row">
+         <div class="col-md-12">
+           <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
+             {{ erro }}
+           </div>
+         </div>
+       </div>
+       <div class="row" *ngIf="cliente.id">
+         <div class="col-md-6">
+           <div class="form-group">
+             <label for="id">ID:</label>
+             <input type="text" class="form-control" [ngModel]="cliente.id"
+             name="id" id="id" disabled>
+           </div>
+         </div>
+         <div class="col-md-6">
+           <div class="form-group">
+             <label for="dataCadastro">Data de Cadastro:</label>
+             <input type="text" class="form-control" [ngModel]="cliente.dataCadastro"
+             name="dataCadastro" disabled id="dataCadastro">
+           </div>
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="col-md-6">
+           <div class="form-group">
+             <label  for="nome">Nome:*</label>
+             <input type="text" class="form-control" [(ngModel)]="cliente.nome"
+             name="nome" id="nome" required #name="ngModel">
+             <span [hidden]="name.valid || name.pristine"
+              class="text-danger-error-custom">Nome é obrigatório</span>
+           </div>
+         </div>
+         <div class="col-md-6">
+           <div class="form-group">
+             <label for="cpf">CPF:*</label>
+             <input type="text" class="form-control" [(ngModel)]="cliente.cpf"
+             name="cpf" id="cpf" required  #cpf="ngModel">
+             <span [hidden]="cpf.valid || cpf.pristine"
+             class="text-danger-error-custom">cpf é obrigatório</span>
+            </div>
+         </div>
+       </div>
+       <div class="row mb-2">
+         <div class="col-md-3">
+           <button type="submit" class="btn btn-success" *ngIf="!cliente.id" [disabled]="!clienteForm.form.valid">
+             <i class="fa fa-save"></i> Salvar</button>
+
+           <button type="submit" class="btn btn-primary" *ngIf="cliente.id" [disabled]="!clienteForm.form.valid">
+            <i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</button>
+
+           <button type="button" class="btn btn-warning ml-1" (click)="voltar()">
+             <i class="fa fa-reply"></i>
+             Voltar</button>
+         </div>
+       </div>
+
+     </form>
+   </div>
+ </div>
+</div>
