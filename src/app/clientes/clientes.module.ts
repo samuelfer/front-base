@@ -1,16 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ToastModule } from 'primeng/toast';
-import { MessageModule } from 'primeng/message';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
-
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 
 import { ClientesFormComponent } from './clientes-form/clientes-form.component';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { ClientesRoutingModule } from './clientes-routing.module';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { ButtonModule } from 'primeng/button';
     ToastModule,
     MessageModule,
     ConfirmPopupModule,
-    ButtonModule
   ],
   exports: [
     ClientesFormComponent

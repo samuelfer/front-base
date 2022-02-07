@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ClienteService } from './services/cliente.service';
 import { TemplateModule } from './template/template.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
