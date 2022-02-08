@@ -5,6 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
 
 import { ClientesFormComponent } from './clientes-form/clientes-form.component';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
@@ -23,6 +24,7 @@ import { ClientesRoutingModule } from './clientes-routing.module';
     ToastModule,
     MessageModule,
     ConfirmPopupModule,
+    ButtonModule
   ],
   exports: [
     ClientesFormComponent

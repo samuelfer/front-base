@@ -50,7 +50,7 @@ export class ClientesFormComponent implements OnInit {
         this.messageService.add({severity:'success', summary: 'Successo',
         detail: 'Registro salvo com sucesso'});
         this.erros = [];
-        this.ngOnInit();
+        this.voltar();
       },
       errorResponse => {
         this.erros = errorResponse.error.errors;
@@ -64,6 +64,7 @@ export class ClientesFormComponent implements OnInit {
         detail: 'Registro salvo com sucesso'});
         this.cliente = response
         this.erros = [];
+        this.voltar();
       },
       errorResponse => {
         this.erros = errorResponse.error.errors;

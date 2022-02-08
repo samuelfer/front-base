@@ -45,12 +45,16 @@ export class ClientesListComponent implements OnInit {
 
   deletar(cliente: Cliente): void {
     this.clienteService.deletar(cliente).subscribe(
-      response => null,
+      response => {
+        this.messageService.add({severity:'success', summary: 'Erro',
+      detail: 'Registro ecluído com sucesso'});
+      this.ngOnInit();
+      },
       error => {
         this.messageService.add({severity:'error', summary: 'Erro',
       detail: 'Ocorreu um erro ao tentar excluir'});
       });
-    this.ngOnInit();
+      this.ngOnInit();
   }
 
   confirm(cliente: Cliente) {
@@ -62,19 +66,8 @@ export class ClientesListComponent implements OnInit {
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.deletar(cliente);
-        this.messageService.add({
-          severity: "success",
-          summary: "Atenção",
-          detail: "Registro excluído com sucesso"
-        });
       },
-      reject: () => {
-        this.messageService.add({
-          severity: "info",
-          summary: "Atenção",
-          detail: "Você cancelou a exclusão"
-        });
-      }
+      reject: () => {}
     });
   }
 
