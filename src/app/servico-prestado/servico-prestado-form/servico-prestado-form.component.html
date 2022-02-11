@@ -2,73 +2,72 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">
-       Cadastro de Serviço Prestado
-     </h6>
+        Cadastro de Serviço Prestado
+      </h6>
 
-    <div class="container mt-2">
-      <p-toast></p-toast>
-      <form #servicoPrestadoForm="ngForm" (submit)="onSubmit()">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
-              {{ erro }}
+      <div class="container mt-2">
+        <p-toast></p-toast>
+        <form #servicoPrestadoForm="ngForm" (submit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
+                {{ erro }}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="cliente">Cliente:*</label>
-              <select class="form-control" [ngModelOptions]="{standalone: true}"
-                [(ngModel)]="servico.clienteId" name="clienteId" id="clienteId" required #clienteId="ngModel">
-                <option value="">Selecione ...</option>
-                <option *ngFor="let cliente of clientes" [ngValue]="cliente.id">{{ cliente.nome }}</option>
-              </select>
-              <span [hidden]="clienteId.valid || clienteId.pristine"
-              class="text-danger-error-custom">cliente é obrigatório</span>
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="cliente">Cliente:*</label>
+                <p-dropdown [options]="clientes" id="clienteId" [required]="true" styleClass="col-md-12"
+                  [ngModelOptions]="{standalone: true}" placeholder="Selecione" [(ngModel)]="servico.clienteId"
+                  optionLabel="nome" optionValue="id" [showClear]="true" #clienteId="ngModel"></p-dropdown>
+                <span [hidden]="clienteId.valid || clienteId.pristine" class="text-danger-error-custom">cliente é
+                  obrigatório</span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="descricao">Descricao:*</label>
+                <input type="text" class="form-control" [(ngModel)]="servico.descricao" name="descricao" id="descricao"
+                  required #name="ngModel">
+                <span [hidden]="name.valid || name.pristine" class="text-danger-error-custom">descrição é
+                  obrigatória</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="data">Data:*</label>
+                <input type="text" class="form-control" [(ngModel)]="servico.data" name="data" id="data" required
+                  #data="ngModel">
+                <span [hidden]="data.valid || data.pristine" class="text-danger-error-custom">data é obrigatória</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="preco">Preço:*</label>
+                <input type="text" class="form-control" [(ngModel)]="servico.preco" name="preco" id="preco" required
+                  #preco="ngModel">
+                <span [hidden]="preco.valid || preco.pristine" class="text-danger-error-custom">preço é
+                  obrigatório</span>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-success" *ngIf="!servico.id"
+                [disabled]="!servicoPrestadoForm.form.valid">
+                <i class="fa fa-save"></i> Salvar</button>
+
+              <button type="button" class="btn btn-warning ml-1" (click)="voltar()">
+                <i class="fa fa-reply"></i>
+                Voltar</button>
             </div>
           </div>
 
-          <div class="col-md-6">
-            <div class="form-group">
-              <label  for="descricao">Descricao:*</label>
-              <input type="text" class="form-control" [(ngModel)]="servico.descricao"
-              name="descricao" id="descricao" required #name="ngModel">
-              <span [hidden]="name.valid || name.pristine"
-               class="text-danger-error-custom">descrição é obrigatória</span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="data">Data:*</label>
-              <input type="text" class="form-control" [(ngModel)]="servico.data"
-              name="data" id="data" required  #data="ngModel">
-              <span [hidden]="data.valid || data.pristine"
-              class="text-danger-error-custom">data é obrigatória</span>
-             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="preco">Preço:*</label>
-              <input type="text" class="form-control" [(ngModel)]="servico.preco"
-              name="preco" id="preco" required  #preco="ngModel">
-              <span [hidden]="preco.valid || preco.pristine"
-              class="text-danger-error-custom">preço é obrigatório</span>
-             </div>
-          </div>
-        </div>
-        <div class="row mb-2">
-          <div class="col-md-3">
-           <button type="submit" class="btn btn-success" *ngIf="!servico.id" [disabled]="!servicoPrestadoForm.form.valid">
-              <i class="fa fa-save"></i> Salvar</button>
-
-            <button type="button" class="btn btn-warning ml-1" (click)="voltar()">
-              <i class="fa fa-reply"></i>
-              Voltar</button>
-          </div>
-        </div>
-
-      </form>
+        </form>
+      </div>
     </div>
   </div>
- </div>

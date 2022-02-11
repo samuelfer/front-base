@@ -7,6 +7,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { ServicoPrestadoRoutingModule } from './servico-prestado-routing.module';
 import { ServicoPrestadoFormComponent } from './servico-prestado-form/servico-prestado-form.component';
@@ -26,7 +27,8 @@ import { ServicoPrestadoListComponent } from './servico-prestado-list/servico-pr
     ToastModule,
     MessageModule,
     ConfirmPopupModule,
-    ButtonModule
+    ButtonModule,
+    DropdownModule
   ],
   exports: [
     ServicoPrestadoFormComponent,
