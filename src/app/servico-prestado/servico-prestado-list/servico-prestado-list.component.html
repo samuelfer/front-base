@@ -1,0 +1,65 @@
+<div class="card shadow mb-4">
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Listagem de Serviços Prestados
+          <button type="submit" class="btn btn-success float-right" (click)="abrirForm()">
+            <i class="fa fa-plus"></i> Novo</button>
+        </h6>
+      </div>
+
+      <div class="container mt-2">
+        <p-toast></p-toast>
+        <form #consultaForm="ngForm" (submit)="consultar()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="cliente">Cliente:</label>
+                <input type="text" [(ngModel)]="nome" name="nome" class="form-control" id="nome">
+              </div>
+            </div>
+            <div class="col-md-6">
+                <label for="cliente">Mês:</label>
+                <div class="form-group">
+                  <p-dropdown [options]="meses" styleClass="col-md-6" [ngModelOptions]="{standalone: true}" placeholder="Selecione"
+                  [(ngModel)]="mes" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa fa-search"></i> Consultar</button>
+            </div>
+          </div>
+        </form>
+
+        <br />
+        <div class="row">
+          <div class="alert alert-warning" role="alert" *ngIf="message">
+            {{ message }}
+          </div>
+          <div class="col-md-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Descrição</th>
+                  <th>Valor</th>
+                  <th>Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of lista">
+                  <td>{{ item.cliente.nome }}</td>
+                  <td>{{ item.descricao }}</td>
+                  <td>{{ item.valor }}</td>
+                  <td>{{ item.data }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

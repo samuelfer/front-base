@@ -31,8 +31,8 @@
                          routerLink="/clientes/{{ cliente.id }}" title="Editar">
                           <i class="fa fa-edit"></i></button>
 
-                          <button (click)="confirm(cliente)" class="p-button-raised p-button-danger"
-                            pButton icon="pi pi-trash"></button>
+                        <button type="button" (click)="confirm(cliente)" class="p-button-danger"
+                          pButton icon="pi pi-trash"></button>
                       </td>
                   </tr>
               </tbody>
