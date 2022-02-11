@@ -1,3 +1,4 @@
+import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,7 @@ import { TemplateModule } from './template/template.module';
     HttpClientModule,
     TemplateModule,
     ClientesModule,
+    ServicoPrestadoModule
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent]

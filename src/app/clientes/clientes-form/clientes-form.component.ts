@@ -15,7 +15,7 @@ import { ClienteService } from './../../services/cliente.service';
 })
 export class ClientesFormComponent implements OnInit {
 
-  public cliente: Cliente = new Cliente(0, '', '', '');
+  public cliente: Cliente = new Cliente();
   erros: String[] = [];
   id: number | undefined;
   submitted = false;
